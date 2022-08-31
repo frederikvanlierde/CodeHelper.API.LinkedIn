@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.Owin.Security.OAuth;
 using System.Net.Http;
 namespace CodeHelper.API.LinkedIn
 {
@@ -56,10 +52,15 @@ namespace CodeHelper.API.LinkedIn
             await PostJson(Constants.APIURL_POST, _post.GetJsonString());
         }
 
-        public async Task GetMe()
+        /// <summary>
+        /// Gets the author iD for the current loggedin user, based on accesstoken
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> GetAuthorID()
         {
             SetAuthorizationHeader();
-            await GetJson(Constants.APIURL_ME);
+            this.AuthorID = (JsonSerializer.Deserialize<Author>(await GetJson(Constants.APIURL_ME)) ?? new()).Id;
+            return this.AuthorID;
         
         }
         #endregion

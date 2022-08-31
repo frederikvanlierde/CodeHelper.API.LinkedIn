@@ -10,9 +10,11 @@ Including ShareTextMessage and ShareUrl
 * NuGet <https://www.nuget.org/packages/CodeHelper.API.LinkedIn>
 
 ## Version
+* 1.0.2 : GetAuthorID
 * 1.0.0 : ShareTextMessage, ShareUrl
 
 ## Methods
+* LinkedInHelper.getAuthorID() : Returns the profile id for the current member, using the accesstoken
 * LinkedInHelper.ShareTextMessage(string textMessage, string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public) : Share a simple text message on LinkedIn
 * LinkedInHelper.ShareUrl(string textMessage, string eUrl, string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public,  string articleTitle=null, string articleDescription=null) : Share an Article or an URL 
 
