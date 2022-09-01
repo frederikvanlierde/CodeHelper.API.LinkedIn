@@ -24,7 +24,7 @@ namespace CodeHelper.API.LinkedIn.Common
         /// <summary>
         /// Optional: Provide the URL of the article you would like to share here.        
         /// </summary>
-        [JsonPropertyName("originalUrl")] public string OriginalUrl { get; set; } = "";
+        [JsonPropertyName("originalUrl")] public string OriginalUrl { get; set; } = null;
 
         /// <summary>
         /// Optional: Customize the title of your image or article.
