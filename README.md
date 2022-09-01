@@ -10,13 +10,15 @@ Including ShareTextMessage and ShareUrl
 * NuGet <https://www.nuget.org/packages/CodeHelper.API.LinkedIn>
 
 ## Version
+* 1.0.3 : ShareImage
 * 1.0.2 : GetAuthorID
 * 1.0.0 : ShareTextMessage, ShareUrl
 
 ## Methods
-* LinkedInHelper.getAuthorID() : Returns the profile id for the current member, using the accesstoken
+* LinkedInHelper.GetAuthorID() : Returns the profile id for the current member, using the accesstoken
 * LinkedInHelper.ShareTextMessage(string textMessage, string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public) : Share a simple text message on LinkedIn
 * LinkedInHelper.ShareUrl(string textMessage, string eUrl, string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public,  string articleTitle=null, string articleDescription=null) : Share an Article or an URL 
+* LinkedInHelper.ShareImage(string textMessage, byte[] imageData,  string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public, string imageTitel= null, string imageDescription=null) : Share an Image 
 
 ## Use of Code	
  ```csharp
@@ -26,6 +28,8 @@ LinkedInHelper _helper = new() {AuthorID= "{authorid}", AccessToken = "{accessto
 await _helper.ShareTextMessage("A first test message shared on LinkedIn");
 await _helper.ShareUrl("Check out my updated website", "https://frederik.today/", VisibilityTypes.Public, "Frederik Today", "My Upated Webiste") ;
 
+byte[] _image = File.ReadAllBytes(@"{PATHTOIMAGE}");
+await _helper.ShareImage("Test for post", _image, VisibilityTypes.Public, "My Image Title", "MyImage Description");
 ```
 
 ## Authentication

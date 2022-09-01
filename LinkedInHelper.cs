@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using System.Threading.Tasks;
 using System.Net.Http;
+using CodeHelper.API.LinkedIn.Common;
 namespace CodeHelper.API.LinkedIn
 {
     /// <summary>
@@ -13,7 +14,7 @@ namespace CodeHelper.API.LinkedIn
         private string _AuthorID = "";
         public string AccessToken { get; set; } = "";        
         public string AuthorID { get { return "urn:li:person:" + _AuthorID; } 
-                                 set { _AuthorID = value; } }
+                                 set { _AuthorID = value.Replace("urn:li:person:",""); } }
         #endregion
 
         #region Constructo
@@ -21,6 +22,32 @@ namespace CodeHelper.API.LinkedIn
         #endregion
 
         #region Public Methods
+        public async Task<bool> ShareImage(string textMessage, byte[] imageData,  string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public, string imageTitel= null, string imageDescription=null)
+        {
+            bool isSuccess = false;
+            RegisterUploadRequest _uploadRequest = new(this.AuthorID);
+            RegisterUploadResponse _uploadResponse = JsonSerializer.Deserialize<RegisterUploadResponse>(await PostJson(Constants.APIURL_UPLOADREQUEST, _uploadRequest.GetJsonString())) ?? new();
+            if (!string.IsNullOrEmpty(_uploadResponse.Value.UploadMechanism.UploadHttpRequest.UploadUrl))
+            {
+                //--Upload imge 
+                var _uploadURL = _uploadResponse.Value.UploadMechanism.UploadHttpRequest.UploadUrl;
+                
+                SetAuthorizationHeader();
+                var _task = await _httpClient.PostAsync(_uploadURL, new ByteArrayContent(imageData));
+                if (_task.IsSuccessStatusCode)
+                {
+                    await Share(textMessage, ShareMediaCategoryTypes.Image, "", visibility, imageTitel, imageDescription, _uploadResponse.Value.Asset);
+                    isSuccess = true;
+                }
+            }
+            return isSuccess;
+        }
+
+        /// <summary>
+        /// Share a simple Text post on LinkedIn
+        /// </summary>
+        /// <param name="textMessage">Mandatory: text to share</param>
+        /// <param name="visibility">Mandatory, use VisibilityTypes for list (default: PUBLIC</param>
         public async Task ShareTextMessage(string textMessage, string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public)
         {
             Post _post = new() { Author = this.AuthorID };
@@ -42,14 +69,9 @@ namespace CodeHelper.API.LinkedIn
         /// <param name="articleTitle">Optional: Customize the title of your image or article.</param>
         /// <param name="articleDescription">Optional: Provide a short description for your image or article.</param>
         /// <returns></returns>
-        public async Task ShareUrl(string textMessage, string eUrl, string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public,  string articleTitle=null, string articleDescription=null)
+        public async Task ShareUrl(string textMessage, string url, string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public,  string articleTitle=null, string articleDescription=null)
         {
-            Post _post = new() { Author = this.AuthorID };
-            _post.Visibility.VisibiltyTpe = visibility;
-            _post.SpecificContent.ShareContent = new Common.ShareContent() { ShareCommentary = new() { Text = textMessage }, ShareMediaCategory = ShareMediaCategoryTypes.Article };
-            _post.SpecificContent.ShareContent.Media = new();
-            _post.SpecificContent.ShareContent.Media.Add(new() { OriginalUrl = eUrl, Title = new() { Text = articleTitle }, Description = new() { Text =  articleDescription } });
-            await PostJson(Constants.APIURL_POST, _post.GetJsonString());
+            await Share(textMessage, ShareMediaCategoryTypes.Article, url, visibility, articleTitle, articleDescription, null);            
         }
 
         /// <summary>
@@ -70,15 +92,13 @@ namespace CodeHelper.API.LinkedIn
         {
             SetAuthorizationHeader();
             var _task = await _httpClient.PostAsync(apiURL, data);
-            var _r  = await _task.Content.ReadAsStringAsync();
-            return _r;
+            return await _task.Content.ReadAsStringAsync();
         }
         protected async Task<string> GetJson(string apiURL)
         {
             SetAuthorizationHeader();            
             var _task = await _httpClient.GetAsync(apiURL);
-            var _r = await _task.Content.ReadAsStringAsync();
-            return _r;
+            return await _task.Content.ReadAsStringAsync();
         }
         private void SetAuthorizationHeader()
         {
@@ -89,6 +109,21 @@ namespace CodeHelper.API.LinkedIn
             if (_httpClient.DefaultRequestHeaders.Contains("Authorization"))
                 _httpClient.DefaultRequestHeaders.Remove("Authorization");
             _httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + this.AccessToken);
+        }
+        private async Task Share(string textMessage, string shareMediaCategory, string url="", string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public, string articleTitle = null, string articleDescription = null, string mediaID=null)
+        {
+            Post _post = new() { Author = this.AuthorID };
+            _post.Visibility.VisibiltyTpe = visibility;
+            _post.SpecificContent.ShareContent = new Common.ShareContent() { ShareCommentary = new() { Text = textMessage }, ShareMediaCategory = shareMediaCategory };
+            _post.SpecificContent.ShareContent.Media = new();
+            _post.SpecificContent.ShareContent.Media.Add(new() { Title = new() { Text = articleTitle }, Description = new() { Text = articleDescription } });
+            if(!string.IsNullOrEmpty(url))
+                _post.SpecificContent.ShareContent.Media[0].OriginalUrl = url;
+
+            if (!string.IsNullOrEmpty(mediaID))_post.SpecificContent.ShareContent.Media[0].Media = "urn:li:digitalmediaAsset:" + mediaID;
+                _post.SpecificContent.ShareContent.Media[0].Media = mediaID;
+            await PostJson(Constants.APIURL_POST, _post.GetJsonString());
+            
         }
         #endregion
     }

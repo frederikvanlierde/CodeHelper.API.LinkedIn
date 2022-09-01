@@ -37,8 +37,9 @@ namespace CodeHelper.API.LinkedIn
 
         #region Public Methods
         public HttpContent GetJsonString()
-        {           
-            return new StringContent(JsonSerializer.Serialize(this, new JsonSerializerOptions() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull }), System.Text.Encoding.UTF8, "application/json");
+        {
+            var _j = JsonSerializer.Serialize(this, new JsonSerializerOptions() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
+            return new StringContent(_j, System.Text.Encoding.UTF8, "application/json");
         }
         #endregion
     }
