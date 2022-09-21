@@ -30,7 +30,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CodeHelper.Core.PlaceHolder" Version="6.0.0" />
+		<PackageReference Include="CodeHelper.Core.PlaceHolder" Version="6.3.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="CodeHelper-Logo.ico" />

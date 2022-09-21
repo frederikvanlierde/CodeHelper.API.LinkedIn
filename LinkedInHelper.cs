@@ -12,9 +12,12 @@ namespace CodeHelper.API.LinkedIn
         #region Properties
         private readonly HttpClient _httpClient = new();
         private string _AuthorID = "";
-        public string AccessToken { get; set; } = "";        
-        public string AuthorID { get { return "urn:li:person:" + _AuthorID; } 
-                                 set { _AuthorID = value.Replace("urn:li:person:",""); } }
+        public string AccessToken { get; set; } = "";
+        public string AuthorType { get; set; } = AuthorTypes.Person;
+
+        //public string AuthorID { get; set; }
+        public string AuthorID { get { return "urn:li:" + AuthorType + ":" + _AuthorID; } 
+                                set { _AuthorID = value.Replace("urn:li:" + AuthorType + ":",""); } }
         #endregion
 
         #region Constructo
@@ -85,6 +88,13 @@ namespace CodeHelper.API.LinkedIn
             return this.AuthorID;
         
         }
+
+        public async Task<string> GetUserOrganizationAccessControl()
+        {
+            SetAuthorizationHeader();
+            string _result = await GetJson(Constants.APIURL_ORGANIZATIONACLS);
+            return _result;
+        }
         #endregion
 
         #region Private Methods        
@@ -92,7 +102,8 @@ namespace CodeHelper.API.LinkedIn
         {
             SetAuthorizationHeader();
             var _task = await _httpClient.PostAsync(apiURL, data);
-            return await _task.Content.ReadAsStringAsync();
+            string _result =  await _task.Content.ReadAsStringAsync();
+            return _result;
         }
         protected async Task<string> GetJson(string apiURL)
         {
@@ -109,6 +120,8 @@ namespace CodeHelper.API.LinkedIn
             if (_httpClient.DefaultRequestHeaders.Contains("Authorization"))
                 _httpClient.DefaultRequestHeaders.Remove("Authorization");
             _httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + this.AccessToken);
+
+            
         }
         private async Task Share(string textMessage, string shareMediaCategory, string url="", string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public, string articleTitle = null, string articleDescription = null, string mediaID=null)
         {

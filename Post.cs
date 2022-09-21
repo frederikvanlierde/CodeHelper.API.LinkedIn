@@ -40,7 +40,7 @@ namespace CodeHelper.API.LinkedIn
         {
             var _j = JsonSerializer.Serialize(this, new JsonSerializerOptions() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
             return new StringContent(_j, System.Text.Encoding.UTF8, "application/json");
-        }
+            }
         #endregion
     }
 }
