@@ -3,8 +3,9 @@ CodeHelper.API.LinkedIn is a lightweight and simple .NET Wrapper to let you shar
 Including ShareTextMessage and ShareUrl
 		
 ## Info + Question?
+* [Website](https://frederik.today/codehelper/)
 * [Twitter](https://twitter.com/@frederik_vl/)
-* [LinkedIN](https://www.linkedin.com/company/codehelper-dotnet/)
+* [LinkedIn Page](https://www.linkedin.com/company/codehelper-dotnet/)
 * [LinkedIn API](https://docs.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/share-on-linkedin?context=linkedin%2Fconsumer%2Fcontext)
 * [NuGet](https://www.nuget.org/packages/CodeHelper.API.LinkedIN)
 * [Wiki + Code Examples](https://github.com/frederikvanlierde/CodeHelper.API.LinkedIn/wiki)
@@ -25,7 +26,6 @@ You can support the work if you want:
 * [CodeHelper.Core.OAuth2](https://www.nuget.org/packages/CodeHelper.Core.OAuth2)
 * [CodeHelper.Core.PlaceHolder](https://www.nuget.org/packages/CodeHelper.Core.PlaceHolder)
 		
-
 
 ## Methods
 * LinkedInHelper.GetAuthorID() : Returns the profile id for the current member, using the accesstoken
