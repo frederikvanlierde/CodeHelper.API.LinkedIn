@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 namespace CodeHelper.API.LinkedIn.Common
 {
-    public class RegisterUploadResponseValue
+    public sealed class RegisterUploadResponseValue
     {
         #region Properties
         [JsonPropertyName("uploadMechanism")]   public UploadMechanism UploadMechanism { get; set; }

@@ -3,7 +3,7 @@
 
 namespace CodeHelper.API.LinkedIn.Common
 {
-    public class ShareMedia
+    public sealed class ShareMedia
     {
         #region Properties
         /// <summary>

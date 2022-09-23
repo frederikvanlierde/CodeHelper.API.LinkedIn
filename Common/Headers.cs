@@ -1,6 +1,6 @@
 ﻿namespace CodeHelper.API.LinkedIn.Common
 {
-    public class Headers
+    public sealed class Headers
     {
         #region Properties        
         #endregion

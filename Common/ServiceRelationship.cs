@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 namespace CodeHelper.API.LinkedIn.Common
 {
-    public class ServiceRelationship
+    public sealed class ServiceRelationship
     {
         #region Properties
         [JsonPropertyName("relationshipType")] public string RelationshipType { get; set; } = "OWNER";

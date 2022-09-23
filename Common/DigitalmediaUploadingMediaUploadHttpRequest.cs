@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 namespace CodeHelper.API.LinkedIn.Common
 {
-    public class DigitalmediaUploadingMediaUploadHttpRequest
+    public sealed class DigitalmediaUploadingMediaUploadHttpRequest
     {
         #region Properties
         [JsonPropertyName("headers")]   public Headers Headers { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CodeHelper.API.LinkedIn.Common
 {
-    public class ShareContent
+    public sealed class ShareContent
     {
         #region Properties
         /// <summary>

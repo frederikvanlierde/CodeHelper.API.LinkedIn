@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace CodeHelper.API.LinkedIn.Common
 {    
-    public class UploadRequest
+    public sealed class UploadRequest
     {
         #region Properties
         [JsonPropertyName("recipes")]               public List<string> Recipes { get; set; } = new() { "urn:li:digitalmediaRecipe:feedshare-image" };
