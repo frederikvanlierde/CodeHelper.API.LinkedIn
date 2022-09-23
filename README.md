@@ -2,23 +2,21 @@
 CodeHelper.API.LinkedIn is a lightweight and simple .NET Wrapper to let you share posts, url and articles on LinkedIn
 Including ShareTextMessage and ShareUrl
 		
-
-## Question?
-* Frederik van Lierde <https://twitter.com/@frederik_vl/>
-* LinkedIN <https://www.linkedin.com/company/codehelper-dotnet/>
-* LinkedIn API: <https://docs.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/share-on-linkedin?context=linkedin%2Fconsumer%2Fcontext>
-* GitHub <https://github.com/frederikvanlierde/CodeHelper.API.LinkedIn>
-* NuGet <https://www.nuget.org/packages/CodeHelper.API.LinkedIn>
-* Wiki + Code Examples <https://github.com/frederikvanlierde/CodeHelper.API.LinkedIn/wiki>
+## Info + Question?
+* [Twitter](https://twitter.com/@frederik_vl/)
+* [LinkedIN](https://www.linkedin.com/company/codehelper-dotnet/)
+* [LinkedIn API](https://docs.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/share-on-linkedin?context=linkedin%2Fconsumer%2Fcontext)
+* [NuGet](https://www.nuget.org/packages/CodeHelper.API.LinkedIN)
+* [Wiki + Code Examples](https://github.com/frederikvanlierde/CodeHelper.API.LinkedIn/wiki)
 
 ## Support
 You can support the work if you want:
-* Buy Me A Coffee: <https://www.buymeacoffee.com/codehelper.net>
-* Revolut: <https://revolut.me/frederwa9>
+* [Buy Me A Coffee](https://www.buymeacoffee.com/codehelper.net)
+* [Revolut](https://revolut.me/frederwa9)
 
 
 ## Version
-* 1.0.3 : ShareImage
+* 1.0.4 : ShareImage
 * 1.0.2 : GetAuthorID
 * 1.0.0 : ShareTextMessage, ShareUrl
 

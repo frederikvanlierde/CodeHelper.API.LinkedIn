@@ -5,7 +5,7 @@ using CodeHelper.API.LinkedIn.Common;
 
 namespace CodeHelper.API.LinkedIn
 {
-    public class Post
+    public sealed class Post
     {
         #region Properties
         /// <summary>

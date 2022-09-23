@@ -2,7 +2,7 @@
 
 namespace CodeHelper.API.LinkedIn
 {
-    public class Author
+    public sealed class Author
     {
         #region Properties
         [JsonPropertyName("id")] public string Id { get; set; } = "";

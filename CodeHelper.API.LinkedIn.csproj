@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -21,15 +21,16 @@
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageTags>.net api LinkedIn SocialMedia</PackageTags>
-		<PackageVersion>1.0.3.0</PackageVersion>
+		<PackageVersion>1.0.4.0</PackageVersion>
 		<RepositoryType>git</RepositoryType>
-		<AssemblyVersion>1.0.3.0</AssemblyVersion>
-		<FileVersion>1.0.3.0</FileVersion>
-		<Version>1.0.3</Version>
+		<AssemblyVersion>1.0.4.0</AssemblyVersion>
+		<FileVersion>1.0.4.0</FileVersion>
+		<Version>1.0.4</Version>
 		<Title>LinkedIn API Wrapper</Title>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CodeHelper.Core.OAuth2" Version="1.0.0" />
 		<PackageReference Include="CodeHelper.Core.PlaceHolder" Version="6.3.1" />
 	</ItemGroup>
 	<ItemGroup>
@@ -48,9 +49,5 @@
 		<None Include="LICENSE.txt" Pack="true" PackagePath="" />
 
 	</ItemGroup>
-
-<ItemGroup>
-    <PackageReference Include="Microsoft.Owin.Security.OAuth" Version="4.2.2" />
-  </ItemGroup>
 
 </Project>

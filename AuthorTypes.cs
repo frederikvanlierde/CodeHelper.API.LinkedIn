@@ -1,6 +1,6 @@
 ﻿namespace CodeHelper.API.LinkedIn
 {
-    public class AuthorTypes
+    public sealed class AuthorTypes
     {
         public const string Person = "person";
         public const string Company = "organization";

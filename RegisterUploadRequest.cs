@@ -4,7 +4,7 @@ using System.Net.Http;
 using CodeHelper.API.LinkedIn.Common;
 namespace CodeHelper.API.LinkedIn
 {
-    public class RegisterUploadRequest
+    public sealed class RegisterUploadRequest
     {
         #region Properties
         [JsonPropertyName("registerUploadRequest")] public UploadRequest UploadRequest { get; set; }
