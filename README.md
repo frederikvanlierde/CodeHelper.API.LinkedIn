@@ -21,6 +21,12 @@ You can support the work if you want:
 * 1.0.0 : ShareTextMessage, ShareUrl
 
 
+## Dependencies
+* [CodeHelper.Core.OAuth2](https://www.nuget.org/packages/CodeHelper.Core.OAuth2)
+* [CodeHelper.Core.PlaceHolder](https://www.nuget.org/packages/CodeHelper.Core.PlaceHolder)
+		
+
+
 ## Methods
 * LinkedInHelper.GetAuthorID() : Returns the profile id for the current member, using the accesstoken
 * LinkedInHelper.ShareTextMessage(string textMessage, string visibility = CodeHelper.API.LinkedIn.VisibilityTypes.Public) : Share a simple text message on LinkedIn
